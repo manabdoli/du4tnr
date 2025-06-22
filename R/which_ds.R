@@ -12,16 +12,14 @@ NULL
 #' @description
 #' A helper function for looking up one variable name in a list of datasets.
 whichds <- function(columnName=NULL,
-                     dss=list(UDS=UDS, MRI=mri_data,
-                              PET=pet_data, BIOM=biomarker_data)){
+                     dss){
   sapply(dss,
          function(l) any(columnName %in% names(l)))
 }
 
 #' @export which_ds
 which_ds <- function(columnName=NULL,
-                     dss=list(UDS=UDS, MRI=mri_data,
-                              PET=pet_data, BIOM=biomarker_data)){
+                     dss){
   if(length(columnName)==1)
     whichds(columnName = columnName, dss = dss) else {
       vzd_wds <- Vectorize(which_ds, "columnName", SIMPLIFY = F)

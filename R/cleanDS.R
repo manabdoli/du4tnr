@@ -25,10 +25,10 @@
 #'     NA_Vals=c('','','','"-4, 888.8"','','"9"'),
 #'     Rename=c('','VisitNum', 'AlzD', 'BMI','AGE','Hispanic'))
 #' # Extracting Data
-#' cleanDS(x=UDS, cleanDF=sampleCleanDF, Rename=FALSE)
+#' cleanDS(x, cleanDF=sampleCleanDF, Rename=FALSE)
 #'
 #' @export
-cleanDS <- function(x=UDS,
+cleanDS <- function(x,
                     cleanDF=data.frame(
                       Name=c('NACCID', 'NACCVNUM', 'NACCALZD', 'NACCBMI', 'NACCAGE', 'HISPANIC'),
                       CurrentVal=c('','','8,0,1','','','0,1,9'),

@@ -70,5 +70,5 @@ dbObj <- function(dp_path = "myVars.db"){
 
 #' @export
 print.du4tnr <- function(x, ...){
-  print.sqlite_storage(x$obj)
+  print.sqlite_storage(x$getObj())
 }

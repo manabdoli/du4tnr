@@ -2,7 +2,8 @@
 % Please edit documentation in R/sqlite_storage.R
 \name{sqlite_storage}
 \alias{sqlite_storage}
-\title{Create SQLite Variable Storage Object}
+\title{Enhanced SQLite Variable Storage S3 Object with File Support
+Requires: RSQLite, DBI packages}
 \usage{
 sqlite_storage(db_path = "variables.db")
 }
@@ -15,6 +16,11 @@ An object of class "sqlite_storage"
 #$export
 }
 \description{
+Generated mainly by Claude Sonnet 4
+}
+\details{
+Create SQLite Variable Storage Object
+
 Creates an S3 object that provides persistent storage for R variables
 using SQLite database backend with file support and provenance tracking.
 }
