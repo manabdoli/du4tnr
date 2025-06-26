@@ -2,10 +2,48 @@
 % Please edit documentation in R/dbObj.R
 \name{dbObj}
 \alias{dbObj}
-\title{dbObj a function that creates a sqlite-storage object.}
+\title{dbObj creates an object with a connection to a SQLite database file and a
+set of functions for recording and retrieving variables in the dataset.}
 \usage{
 dbObj(dp_path = "myVars.db")
 }
+\arguments{
+\item{db_path}{The path to the sqlite database file.}
+
+\item{vname}{the variable name}
+
+\item{value}{the value to be assigned to the variable}
+
+\item{source_file}{the name of the file associated with the variable}
+
+\item{file_path}{the full to the file to be imported as a variable or uploaded.}
+
+\item{steps}{a character vector used for documenting steps in creating the variable}
+
+\item{processor}{a function for customizing importing/uploading files}
+}
+\value{
+\code{dbObj} reurns a \code{du4tnr} object which includes a sqlite_storage
+object and functions for updating and accessing it, including:
+\itemize{
+\item \strong{add_var(vname, value, source_file = NULL, steps = NULL)}: adds a variable to
+the database and updates the source file and steps if supplied.
+\item \strong{import_file(vname, file_path, steps = NULL, processor = NULL)}: imports
+a data file as a variable based on the file extension (default) or using the
+\code{processor} function. It adds steps if provided and uses the file as the source.
+\item \strong{add_step(vname, steps)}: Documents steps for an existing variable.
+\item \strong{list_files()}: Lists files imported to the database.
+\item \strong{list_vars()}: List variables added to the database.
+\item \strong{list_steps(vname=NULL)}: List steps for all variables (default) or a given
+variable.
+\item \strong{get_var(vname)}: Returns the value of the variable in database.
+\item \strong{var_exists(vname)}: Returns TRUE if the variable is added to the database.
+\item \strong{del_var(vname)}: Removes the variable from the database
+\item \strong{close_db()}: Closes the database connection.
+\item \strong{reconnect_db()}: Reconnects the current \code{du4tnr} to its original database.
+}
+}
 \description{
-dbObj a function that creates a sqlite-storage object.
+dbObj creates an object with a connection to a SQLite database file and a
+set of functions for recording and retrieving variables in the dataset.
 }

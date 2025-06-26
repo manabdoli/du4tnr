@@ -1,0 +1,191 @@
+---
+title: "du4tnr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{du4tnr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(du4tnr)
+```
+
+## Idea
+Through working with different cohort of student researchers in NAARE program at CSUF, I recognized that while leaving students to do data cleaning and pre-processing is a valuable part of their training, but it becomes a nightmare when it comes to validating their final work products.
+
+To maintain some consistency and make their preprocessing choices transparent, I created an R-package and named it `NACCdata`, after [NACC](https://naccdata.org/), which is the organization that provided us with the data. Since I did not have the permission to share the data, I created a new, data-less package: `du4tnr` (Data Utility for Transparency and Reproduciblity). I also added a new feature for recording datasets/variables in a SQLite database to facilitate sharing verified datasets among a large group of collaborators.
+
+### Features
+
+#### `cleanDS`: Clean Dataset using instructions in a Data.Fream
+The main feature in the original package was to reduce selection, renaming, setting missing values to NA, and redefining levels of categorical variables. This was an important step as `NACC` data had a large number of variables (1936) and it used numerical values for presenting categorical variables and for all missing values.
+
+Let's use `mtcars` as an example:
+
+- `cleanMTcars` contains the instruction for cleaning `mtcars`:
+  - The first two rows show how categorical variables are turned into factors with meaningful levels.
+  - The last row shows how records with `gear==5` are considered as `NA`.
+
+```{r}
+cleanMTcars <- data.frame(
+  Name=c('vs', 'am', 'gear'),
+  CurrentVal=c('0,1','0,1',''),
+  NewLevel=c('V-shape,Straight','Manual,Automatic',''),
+  NA_Vals=c('','','5'),
+  Rename=c('Engine.Shape','Transmission', 'Forward.Gears'))
+cleanMTcars
+```
+
+  - `cleanDS` uses the `cleanMTcars` to select, clean and rename three variables: 
+```{r}
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
+
+```
+
+  - `CleanDS` can pass through other variables using `addCols` parameter, and can skip renaming if needed (`Rename=FALSE`):
+```{r}
+processedMTcars <- cleanDS(mtcars, cleanDF=cleanMTcars,
+                         Rename=FALSE, addCols=colnames(mtcars))
+
+processedMTcars |> head(10)
+```
+
+#### SQLite Storage
+This feature is added to create a repository that can be shared with other collaborator and save time in recreating commonly used datasets. It can also increase the integrity of the data compared to the case that CSV files are shared between colleagues.
+
+Let's start from scracth:
+```{r}
+dbPath <- 'myProject.db'
+res <- NULL
+if(file.exists(dbPath)){
+  if(!file.remove(dbPath)){
+    closeAllConnections()
+    unlink(dbPath, force = TRUE)
+  }
+}
+if(file.exists(dbPath)) stop('Cannot remove ', dbPath, '!\n', 
+                             'Close it by `db_close()` or restart R.')
+```
+
+```{r}
+# Create a new SQLite database or open an existing one:
+projDB <- dbObj(dp_path = dbPath)
+print(projDB)
+```
+
+```{r}
+# Add mtcars, cleanMTcars, and processedMTcars to the database
+projDB$add_var(vname = 'MTCars0', value = mtcars)
+projDB$add_var(vname = 'cleaningInstructions', value = cleanMTcars)
+projDB$add_var(vname = 'MTcars-Processed', value = processedMTcars, 
+               steps = c("rename and relabel `vs` and `am`", "set `gear==5` to `NA`"))
+print(projDB)
+```
+
+Let's close the database:
+```{r}
+# Close the database
+projDB$close_db()
+print(projDB)
+
+```
+
+Let's reuse it:
+```{r}
+projDB$reconnect_db() # No need to reintroduce the path
+print(projDB$list_vars()) # Just listing variables
+
+```
+
+Now, let's access the database using a second object:
+```{r}
+myDB <- dbObj(dp_path = dbPath)
+print(myDB$list_vars())
+```
+
+And let's create a source file to remove NAs and add the result as a new variable:
+```{r}
+# Create an R Script
+fConn <- file("cleanMtcars.R")
+writeLines(con = fConn, text = '
+# Removing NAs from processedMTcars
+cleansedMTcatrs <- processedMTcars[complete.cases(processedMTcars),]
+')
+close(fConn)
+# Run the R Script
+source("cleanMtcars.R")
+# Add the new variable and its source file to the dataset
+myDB$add_var(vname = "MTcars-cleaned", cleansedMTcatrs,
+             steps = "Remove NAs")
+print(myDB)
+```
+
+Let's check the first instance of the database:
+```{r}
+projDB$list_vars()
+```
+```{r}
+myDB$close_db()
+```
+
+#### Descriptive Functions
+The package offers a few simple functions that we have found useful in summarizing and describing data.
+
+##### `con_table`: Creating contingency tables
+The following creates a contingency table between `vs` and `gear`:
+
+```{r}
+x <- projDB$get_var("MTcars-cleaned")
+cont_table(x, vs~gear)
+```
+`con_table()` can use more than one variable for rows or columns:
+```{r}
+cont_table(x, vs~gear+am)
+```
+
+This function can also count NAs, when needed:
+
+```{r}
+y <- projDB$get_var("MTcars-Processed")
+cont_table(y, vs+am~gear, useNA = 'ifany')
+```
+##### `total_col()` and `total_row()`: Adding Marginal Sums to Tables and Data.frames
+
+These functions can add total column and row to a count table and data.frame:
+```{r}
+cont_table(y, vs+am~gear, useNA = 'ifany') |> 
+  total_row() |> total_col()
+
+```
+
+```{r}
+y |> total_row() |> tail(10)
+```
+
+##### `describe_ds()`: Generates a Summary of Variables
+This function creates a summary of each variable, including the counts of NAs, if any.
+
+```{r}
+describe_ds(y, maxLevels = 3, var2row = FALSE)
+
+```
+##### `which_ds()`: Searching datasets for variables
+When dealing with multiple large datasets, we can use this functions to see which one has the variable we have in mind:
+
+```{r}
+which_ds(c('Species', 'am', 'mpg', 'gpm'), 
+         iris=iris, x=x, y=y)
+```
+A more visible format:
+```{r}
+which_ds(c('Species', 'am', 'mpg', 'gpm'), 
+         iris=iris, x=x, y=y)+0
+```

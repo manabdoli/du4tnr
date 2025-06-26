@@ -2,28 +2,58 @@
 % Please edit documentation in R/tableSummary.R
 \name{tableSummary}
 \alias{tableSummary}
-\alias{col_total.table}
-\alias{row_total.table}
+\alias{total_col}
+\alias{total_row}
+\alias{total_col.table}
+\alias{total_row.table}
+\alias{total_col.matrix}
+\alias{total_row.matrix}
+\alias{total_col.data.frame}
+\alias{total_row.data.frame}
 \title{Summarizing Functions for \code{table} Object}
 \usage{
-col_total.table(x)
+total_col(x, na.rm = FALSE)
 
-row_total.table(x)
+total_row(x, na.rm = FALSE)
+
+\method{total_col}{table}(x, na.rm = FALSE)
+
+\method{total_row}{table}(x, na.rm = FALSE)
+
+\method{total_col}{matrix}(x, na.rm = FALSE)
+
+\method{total_row}{matrix}(x, na.rm = FALSE)
+
+\method{total_col}{data.frame}(x, na.rm = FALSE)
+
+\method{total_row}{data.frame}(x, na.rm = FALSE)
 }
 \arguments{
-\item{x}{a table object.}
+\item{x}{a table or data.frame object.}
 }
 \value{
-\code{col_total} returns a new table object with an additional column,
+\code{total_col} returns a new object with an additional column,
 named \code{Total} or \code{Total.Col}
 
-\code{row_total} returns a new table object with an additional row,
+\code{total_row} returns a new object with an additional row,
 named \code{Total} or \code{Total.Row}
 }
 \description{
 Utility functions for adding Totals
 
-\code{col_total.table} adds a column summary to a table.
+\code{total_col} adds a column summary to a table/data.frame.
 
-\code{row_total.table} Adds a row summary to a table.
+\code{total_row} adds a row summary to a table/data.frame.
+
+\code{total_col.table} adds a column summary to a table.
+
+\code{total_row.table} Adds a row summary to a table.
+
+\code{total_col.matrix} adds a column summary to a matrix.
+
+\code{total_col.matrix} adds a row summary to a matrix.
+
+\code{total_col.table} adds a column summary to a data.frame.
+
+\code{total_row.table} Adds a row summary to a table.
 }

@@ -3,12 +3,16 @@
 \name{which_ds}
 \alias{which_ds}
 \alias{whichds}
-\title{Find the dataset containing given column names}
+\title{Searching a column name in datasets (data frames)}
 \usage{
-whichds(columnName = NULL, dss)
+whichds(columnName = NULL, ...)
+
+which_ds(columnName = NULL, ...)
 }
 \arguments{
-\item{columnName}{a vector of variable names to be looked up is different datasets.}
+\item{columnName}{a character vector of name of variables of interest.}
+
+\item{...}{a comma separated list of datasets}
 
 \item{dss}{is a list of all datasets where variable names will be searched for.}
 }
@@ -18,4 +22,6 @@ variables listed in \code{columnName}.
 }
 \description{
 A helper function for looking up one variable name in a list of datasets.
+
+Looking up the name of several variables in a list of datasets.
 }

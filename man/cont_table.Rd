@@ -9,18 +9,23 @@ cont_table(x, formula, useNA = "no")
 \arguments{
 \item{x}{A data frame}
 
-\item{formula}{a formula of form \code{response(s) ~ predictor(s)} for constructing the
-contingency table}
+\item{formula}{a \code{response(s) ~ predictor(s)} formula. If multiple variables
+are used as the response or predictor, \code{concat} is used to create a new variable
+by concatenating the values of all variables used.
+@param useNA This is passed to \code{table()} and can take these values:
+c("no", "ifany", "always"). The default value is "no".}
 }
 \value{
-a contingency table which its rows and columns are identified by
-the \code{formula}.
+a contingency table based on the \code{formula}: Rows representing
+\code{response(s) } and columns representing \code{predictor(s)}.
 }
 \description{
-Creating a contingency table for based on a \code{response(s) ~ predictor(s)} formula.
+Creating a contingency table based on a \code{response(s) ~ predictor(s)} formula.
 }
 \examples{
 cont_table(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), A~B))
+cont_table(data.frame(A=c('a', 'b', 'a', 'b', 'a', 'b'),
+   B=c('x', 'y', 'y', 'x', 'y', 'x'), C=c('f', 'g')), A~B+C)
 
 }
 \seealso{

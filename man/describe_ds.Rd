@@ -4,12 +4,15 @@
 \alias{describe_ds}
 \title{Describe a Dataset}
 \usage{
-describe_ds(x, maxsum = 7, long = FALSE)
+describe_ds(x, maxLevels = 7, var2row = FALSE)
 }
 \arguments{
 \item{x}{a dataset}
 
-\item{maxsum}{the maximum number of summary items to supply}
+\item{maxLevels}{the maximum number of levels for categorical variables (default is 7)}
+
+\item{var2row}{if TRUE, each variable is summarized as a row; default is
+FALSE, where each column represents the summary of a variable}
 }
 \value{
 A list of at most two tables (Numerical and Categorical) containing

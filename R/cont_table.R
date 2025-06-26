@@ -1,54 +1,22 @@
-#' @rdname concat
-#' @title Concatenating variables to create a new one
-#' @description
-#' A utility function for concatenates a `+`-separated list of variables.
-#' @param x a data frame
-#' @param formula a response-less formula (~ followed by a `+`-separated list of
-#'  variables)
-#' @returns A new variable by concatenating values of variables given as
-#'  predictors given in the `formula`.
-#' @examples
-#' concat(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), ~A+B)
-#'
-concat <- function(x, formula){
-  varList <- strsplit(as.character(formula)[[2]], split = '\\+')[[1]]
-  if(any(varList=='~'))
-    varList <- strsplit(as.character(formula)[[3]], split = '\\+')[[1]]
-  varList <- trimws(varList)
-  ridx <- which(!varList %in% colnames(x))
-  if(length(ridx)==length(varList))
-    stop('No variable were found!')
-
-  if(length(ridx)>0){
-    warning('Some variables were not found: ',
-            paste(varList[ridx], collapse=', '))
-    varList <- varList[-ridx]
-  }
-
-  # y <- if(length(varList)==0)
-  #   stop('No variable were found!')
-
-  if(length(varList)==1) x[[varList]] else{
-    y <- apply(x[, varList], 1, paste, collapse='-')
-    as.vector(y)
-  }
-}
-
 #' @rdname cont_table
 #' @title Contingency Table
 #' @description
-#' Creating a contingency table for based on a `response(s) ~ predictor(s)` formula.
+#' Creating a contingency table based on a `response(s) ~ predictor(s)` formula.
 #'
 #' @param x A data frame
-#' @param formula a formula of form `response(s) ~ predictor(s)` for constructing the
-#' contingency table
-#'
-#' @returns a contingency table which its rows and columns are identified by
-#' the `formula`.
+#' @param formula a `response(s) ~ predictor(s)` formula. If multiple variables
+#'  are used as the response or predictor, `concat` is used to create a new variable
+#'  by concatenating the values of all variables used.
+#'  @param useNA This is passed to `table()` and can take these values:
+#'  c("no", "ifany", "always"). The default value is "no".
+#' @returns a contingency table based on the `formula`: Rows representing
+#'  `response(s) ` and columns representing `predictor(s)`.
 #'
 #' @seealso [concat()]
 #' @examples
 #' cont_table(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), A~B))
+#' cont_table(data.frame(A=c('a', 'b', 'a', 'b', 'a', 'b'),
+#'    B=c('x', 'y', 'y', 'x', 'y', 'x'), C=c('f', 'g')), A~B+C)
 #'
 #' @export
 cont_table <- function(x, formula, useNA="no"){

@@ -1,11 +1,13 @@
 #' Describe a Dataset
 #' @param x a dataset
-#' @param maxsum the maximum number of summary items to supply
+#' @param maxLevels the maximum number of levels for categorical variables (default is 7)
+#' @param var2row if TRUE, each variable is summarized as a row; default is
+#'  FALSE, where each column represents the summary of a variable
 #' @return A list of at most two tables (Numerical and Categorical) containing
 #'   the summary information for variables of each type.
 #'
 #' @export
-describe_ds <- function(x, maxsum=7, long=FALSE){
+describe_ds <- function(x, maxLevels=7, var2row=FALSE){
   if(is.vector(x)) stop('The x is not a dataset!')
   colType <- sapply(1:ncol(x), \(k) is.numeric(x[[k]]))
   nIdx <- which(colType)
@@ -13,8 +15,8 @@ describe_ds <- function(x, maxsum=7, long=FALSE){
   results <- list()
   if(length(nIdx)>0){
     # Numerical Summary
-    numSumm <- summary(x[nIdx], maxsum=maxsum)
-    if(long) numSumm <- t(numSumm)
+    numSumm <- summary(x[nIdx], maxLevels=maxLevels)
+    if(var2row) numSumm <- t(numSumm)
     results$Numerical <- numSumm
   }
   if(length(nnIdx)>0){
@@ -24,14 +26,14 @@ describe_ds <- function(x, maxsum=7, long=FALSE){
     nmax <- max(sapply(catSumm, length))
     catSumm <- lapply(catSumm, function(v){
       n <- length(v)
-      if(n>maxsum){
-        v <- c(v[1:(maxsum-1)], sum(v[maxsum:n]))
-        names(v) <- c(names(v)[1:(maxsum-1)],
+      if(n>maxLevels){
+        v <- c(v[1:(maxLevels-1)], sum(v[maxLevels:n]))
+        names(v) <- c(names(v)[1:(maxLevels-1)],
                       sprintf('Other (%g)', n))
         v
       }
-      if(n<maxsum) {
-        v[maxsum] <- NA
+      if(n<maxLevels) {
+        v[maxLevels] <- NA
         v[is.na(v)] <- ""
         v
       } else v
@@ -42,7 +44,7 @@ describe_ds <- function(x, maxsum=7, long=FALSE){
       cntnt
     })
     catSumm <- do.call('cbind', catSumm)  |> as.table() |> `rownames<-`(NULL)
-    if(long) catSumm <- t(catSumm)
+    if(var2row) catSumm <- t(catSumm)
     results$Categorical <- catSumm
   }
   results

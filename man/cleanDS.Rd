@@ -4,51 +4,43 @@
 \alias{cleanDS}
 \title{Cleaning a Dataset}
 \usage{
-cleanDS(
-  x,
-  cleanDF = data.frame(Name = c("NACCID", "NACCVNUM", "NACCALZD", "NACCBMI", "NACCAGE",
-    "HISPANIC"), CurrentVal = c("", "", "8,0,1", "", "", "0,1,9"), NewLevel = c("", "",
-    "Normal,Dementia,Alzheimer", "", "", "Non-Hispanic, Hispanic, 9"), NA_Vals = c("",
-    "", "", "\\"-4, 888.8\\"", "", "\\"9\\""), Rename = c("", "VisitNum", "AlzD", "BMI",
-    "AGE", "Hispanic")),
-  Rename = FALSE,
-  addCols = NULL
-)
+cleanDS(x, cleanDF, Rename = FALSE, addCols = NULL)
 }
 \arguments{
-\item{x}{the dataset to be cleaned; the default dataset is \code{UDS}}
+\item{x}{the dataset to be cleaned}
 
 \item{cleanDF}{a data.frame that includes instructions for cleaning x;
 columns at least should include the following columns:
 \itemize{
 \item \code{Name}: Containing names of variables to be extracted,
-\item \code{CurrentVal}, \code{NewLevel}: The current values and their replacement levels,
+\item \code{CurrentVal}: The list of valid values
+\item \code{NewLevel}: Level names to be used for categorical variables
 \item \code{NA_Vals}: The values or levels to be replaced with an NA.
-\item \code{Rename}: Suggested new variable names, if needed,
-See the examples for a CleanDF sample.
+\item \code{Rename}: Suggested new variable names, if needed.
+If \code{CurrentVal} is given, all values not listed in it will be replaced by NA.
 }}
 
 \item{Rename}{a logical value indicating whether the variable names should
 be replaced with values in the \code{Rename} column, if given.}
 
-\item{addCols}{list of columns to include as they are.}
+\item{addCols}{list of additional columns to be included without any change.}
 }
 \value{
-returns a selection of variables that have been cleaned with new
-levels and NA values.
+returns a dataset consisting of variables in \code{Name} (cleaned) and \code{addCols} (copied).
 }
 \description{
 Cleaning a Dataset
 }
 \examples{
-# Creating a sample cleanDF data frame:
- sampleCleanDF <- data.frame(
-    Name=c('NACCID', 'NACCVNUM', 'NACCALZD', 'NACCBMI', 'NACCAGE', 'HISPANIC'),
-    CurrentVal=c('','','8,0,1','','','0,1,9'),
-    NewLevel=c('','','Normal,Dementia,Alzheimer','','','Non-Hispanic, Hispanic, 9'),
-    NA_Vals=c('','','','"-4, 888.8"','','"9"'),
-    Rename=c('','VisitNum', 'AlzD', 'BMI','AGE','Hispanic'))
+# Creating a sample cleanDF data frame for `mtccars` dataset:
+ cleanMTcars <- data.frame(
+    Name=c('vs', 'am', 'gear'),
+    CurrentVal=c('0,1','0,1',''),
+    NewLevel=c('V-shape,Straight','Manual,Automatic',''),
+    NA_Vals=c('','','5'),
+    Rename=c('Engine.Shape','Transmission', 'Forward.Gears'))
 # Extracting Data
-cleanDS(x, cleanDF=sampleCleanDF, Rename=FALSE)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=FALSE, addCols=colnames(mtcars)) |> head(10)
 
 }

@@ -4,12 +4,12 @@
 \name{du4tnr-package}
 \alias{du4tnr}
 \alias{du4tnr-package}
-\title{du4tnr: What the Package Does (One Line, Title Case)}
+\title{du4tnr: Data Utility for Transparency and Reproducibility (DU4TnR)}
 \description{
-What the package does (one paragraph).
+A set of tools, inclduing a SQLite-based variable storage object, for increased transparency and reproducibility in collaborative data analysis.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Mansour Abdoli \email{mabdoli@fullerton.edu} (\href{https://orcid.org/0009-0001-6722-0134}{ORCID})
 
 }
 \keyword{internal}

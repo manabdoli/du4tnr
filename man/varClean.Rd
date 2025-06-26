@@ -3,24 +3,15 @@
 \name{varClean}
 \alias{varClean}
 \alias{setNAs}
-\alias{var2cat}
 \title{Variable cleaning functions}
 \usage{
 setNAs(x, naVals = NA)
-
-var2cat(x, levels, labels = levels)
 }
 \arguments{
 \item{x}{a vector to be updated with some new \code{NA}'s.}
 
 \item{naVals}{a vector of values that should be considered as \code{NA}.
 The default value is \code{NA} (no new NA's will be introduced).}
-
-\item{levels}{a vector of valid values(levels) to remain in the resulting factor;
-anything other values will be replaced with \code{NA}'s.}
-
-\item{labels}{a vector of strings to be used when printing factor \code{levels}.
-The default value is the vector used as \code{levels}.}
 }
 \value{
 a modified version of \code{x} where values in \code{naVals} are replaced with \code{NA}'s.
@@ -28,9 +19,5 @@ a modified version of \code{x} where values in \code{naVals} are replaced with \
 \description{
 A set of functions for cleaning variables in a dataset.
 
-\code{setNAs} is used to set some values as \code{NA}.
-
-The \code{var2cat} is a wrapper for \code{factor()}, which creates a
-factor variable with some defined levels and replacing all values left out
-with \code{NA}'s.
+\code{setNAs} is used to set a list of given values as \code{NA}.
 }
