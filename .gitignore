@@ -51,3 +51,4 @@ rsconnect/
 # dB files
 *.db
 inst/doc
+docs

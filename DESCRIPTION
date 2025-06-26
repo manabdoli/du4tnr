@@ -19,3 +19,4 @@ Imports:
     DBI (>= 1.1.0),
     RSQLite (>= 2.2.0)
 VignetteBuilder: knitr
+URL: https://manabdoli.github.io/du4tnr/
