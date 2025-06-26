@@ -23,9 +23,9 @@ Through working with different cohort of student researchers in NAARE program at
 
 To maintain some consistency and make their preprocessing choices transparent, I created an R-package and named it `NACCdata`, after [NACC](https://naccdata.org/), which is the organization that provided us with the data. Since I did not have the permission to share the data, I created a new, data-less package: `du4tnr` (Data Utility for Transparency and Reproduciblity). I also added a new feature for recording datasets/variables in a SQLite database to facilitate sharing verified datasets among a large group of collaborators.
 
-### Features
+## Features
 
-#### `cleanDS`: Clean Dataset using instructions in a Data.Fream
+### `cleanDS`: Clean Dataset using instructions in a Data.Fream
 The main feature in the original package was to reduce selection, renaming, setting missing values to NA, and redefining levels of categorical variables. This was an important step as `NACC` data had a large number of variables (1936) and it used numerical values for presenting categorical variables and for all missing values.
 
 Let's use `mtcars` as an example:
@@ -58,7 +58,7 @@ processedMTcars <- cleanDS(mtcars, cleanDF=cleanMTcars,
 processedMTcars |> head(10)
 ```
 
-#### SQLite Storage
+### SQLite Storage
 This feature is added to create a repository that can be shared with other collaborator and save time in recreating commonly used datasets. It can also increase the integrity of the data compared to the case that CSV files are shared between colleagues.
 
 Let's start from scracth:
@@ -136,10 +136,10 @@ projDB$list_vars()
 myDB$close_db()
 ```
 
-#### Descriptive Functions
+### Descriptive Functions
 The package offers a few simple functions that we have found useful in summarizing and describing data.
 
-##### `con_table`: Creating contingency tables
+#### `con_table`: Creating contingency tables
 The following creates a contingency table between `vs` and `gear`:
 
 ```{r}
@@ -157,7 +157,7 @@ This function can also count NAs, when needed:
 y <- projDB$get_var("MTcars-Processed")
 cont_table(y, vs+am~gear, useNA = 'ifany')
 ```
-##### `total_col()` and `total_row()`: Adding Marginal Sums to Tables and Data.frames
+#### `total_col()` and `total_row()`: Adding Marginal Sums to Tables and Data.frames
 
 These functions can add total column and row to a count table and data.frame:
 ```{r}
@@ -170,14 +170,14 @@ cont_table(y, vs+am~gear, useNA = 'ifany') |>
 y |> total_row() |> tail(10)
 ```
 
-##### `describe_ds()`: Generates a Summary of Variables
+#### `describe_ds()`: Generates a Summary of Variables
 This function creates a summary of each variable, including the counts of NAs, if any.
 
 ```{r}
 describe_ds(y, maxLevels = 3, var2row = FALSE)
 
 ```
-##### `which_ds()`: Searching datasets for variables
+#### `which_ds()`: Searching datasets for variables
 When dealing with multiple large datasets, we can use this functions to see which one has the variable we have in mind:
 
 ```{r}
@@ -189,3 +189,8 @@ A more visible format:
 which_ds(c('Species', 'am', 'mpg', 'gpm'), 
          iris=iris, x=x, y=y)+0
 ```
+### Future Development
+- Adding `respSummary` to summarize variables for different levels of a categorical response.
+
+- Cross-Validation with different cost functions.
+
