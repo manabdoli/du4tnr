@@ -18,6 +18,7 @@ Config/testthat/edition: 3
 Imports: 
     DBI (>= 1.1.0),
     RSQLite (>= 2.2.0),
-    dplyr (>= 1.1.4)
+    dplyr (>= 1.1.4),
+    tidyr
 VignetteBuilder: knitr
 URL: https://manabdoli.github.io/du4tnr/
