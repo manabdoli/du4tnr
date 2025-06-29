@@ -214,13 +214,13 @@ CSV files are shared between colleagues.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; items:</span></span>
 <span><span class="co">#&gt;                   name       type source_file                 created_at</span></span>
-<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt;  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-26 15:54:31.775575</span></span>
+<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt; 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-29 23:52:34.085787</span></span>
 <span><span class="co">#&gt;                   updated_at</span></span>
-<span><span class="co">#&gt; 1 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 2025-06-26 15:54:31.775575</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 2025-06-29 23:52:34.085787</span></span></code></pre></div>
 <p>Let’s close the database:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Close the database</span></span>
@@ -235,25 +235,25 @@ CSV files are shared between colleagues.</p>
 <code class="sourceCode R"><span><span class="va">projDB</span><span class="op">$</span><span class="fu">reconnect_db</span><span class="op">(</span><span class="op">)</span> <span class="co"># No need to reintroduce the path</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">projDB</span><span class="op">$</span><span class="fu">list_vars</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># Just listing variables</span></span>
 <span><span class="co">#&gt;                   name       type source_file                 created_at</span></span>
-<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt;  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-26 15:54:31.775575</span></span>
+<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt; 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-29 23:52:34.085787</span></span>
 <span><span class="co">#&gt;                   updated_at</span></span>
-<span><span class="co">#&gt; 1 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 2025-06-26 15:54:31.775575</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 2025-06-29 23:52:34.085787</span></span></code></pre></div>
 <p>Now, let’s access the database using a second object:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myDB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dbObj.html">dbObj</a></span><span class="op">(</span>dp_path <span class="op">=</span> <span class="va">dbPath</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">myDB</span><span class="op">$</span><span class="fu">list_vars</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   name       type source_file                 created_at</span></span>
-<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt;  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-26 15:54:31.775575</span></span>
+<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt; 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-29 23:52:34.085787</span></span>
 <span><span class="co">#&gt;                   updated_at</span></span>
-<span><span class="co">#&gt; 1 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 2025-06-26 15:54:31.775575</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 2025-06-29 23:52:34.085787</span></span></code></pre></div>
 <p>And let’s create a source file to remove NAs and add the result as a
 new variable:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -279,28 +279,28 @@ new variable:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; items:</span></span>
 <span><span class="co">#&gt;                   name       type source_file                 created_at</span></span>
-<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt;  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3       MTcars-cleaned data.frame        &lt;NA&gt; 2025-06-26 15:54:32.072288</span></span>
-<span><span class="co">#&gt; 4 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-26 15:54:31.775575</span></span>
+<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt; 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3       MTcars-cleaned data.frame        &lt;NA&gt; 2025-06-29 23:52:34.377562</span></span>
+<span><span class="co">#&gt; 4 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-29 23:52:34.085787</span></span>
 <span><span class="co">#&gt;                   updated_at</span></span>
-<span><span class="co">#&gt; 1 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 2025-06-26 15:54:32.072288</span></span>
-<span><span class="co">#&gt; 4 2025-06-26 15:54:31.775575</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 2025-06-29 23:52:34.377562</span></span>
+<span><span class="co">#&gt; 4 2025-06-29 23:52:34.085787</span></span></code></pre></div>
 <p>Let’s check the first instance of the database:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">projDB</span><span class="op">$</span><span class="fu">list_vars</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   name       type source_file                 created_at</span></span>
-<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt;  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3       MTcars-cleaned data.frame        &lt;NA&gt; 2025-06-26 15:54:32.072288</span></span>
-<span><span class="co">#&gt; 4 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-26 15:54:31.775575</span></span>
+<span><span class="co">#&gt; 1              MTCars0 data.frame        &lt;NA&gt; 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2     MTcars-Processed data.frame        &lt;NA&gt; 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3       MTcars-cleaned data.frame        &lt;NA&gt; 2025-06-29 23:52:34.377562</span></span>
+<span><span class="co">#&gt; 4 cleaningInstructions data.frame        &lt;NA&gt; 2025-06-29 23:52:34.085787</span></span>
 <span><span class="co">#&gt;                   updated_at</span></span>
-<span><span class="co">#&gt; 1 2025-06-26 15:54:31.773012</span></span>
-<span><span class="co">#&gt; 2  2025-06-26 15:54:31.77741</span></span>
-<span><span class="co">#&gt; 3 2025-06-26 15:54:32.072288</span></span>
-<span><span class="co">#&gt; 4 2025-06-26 15:54:31.775575</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 2025-06-29 23:52:34.083163</span></span>
+<span><span class="co">#&gt; 2 2025-06-29 23:52:34.087589</span></span>
+<span><span class="co">#&gt; 3 2025-06-29 23:52:34.377562</span></span>
+<span><span class="co">#&gt; 4 2025-06-29 23:52:34.085787</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myDB</span><span class="op">$</span><span class="fu">close_db</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Database connection closed</span></span></code></pre></div>
