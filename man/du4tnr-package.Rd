@@ -16,7 +16,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Mansour Abdoli \email{mabdoli@fullerton.edu} (\href{https://orcid.org/0009-0001-6722-0134}{ORCID})
+\strong{Maintainer}: Mansour Abdoli \email{mabdoli@fullerton.edu} (\href{https://orcid.org/0009-0001-6722-0134}{ORCID}) (https://manabdoli.github.io)
 
 }
 \keyword{internal}

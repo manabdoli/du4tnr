@@ -3,7 +3,9 @@ Title: Data Utility for Transparency and Reproducibility (DU4TnR)
 Version: 0.0.1.0000
 Authors@R: 
     person("Mansour", "Abdoli", , "mabdoli@fullerton.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "0009-0001-6722-0134"))
+           comment = c(
+           Website = "https://manabdoli.github.io",
+           ORCID = "0009-0001-6722-0134"))
 Description: A set of tools, inclduing a SQLite-based variable storage object, for 
   increased transparency and reproducibility in collaborative data analysis.
 License: MIT + file LICENSE

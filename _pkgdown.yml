@@ -2,3 +2,6 @@ url: https://manabdoli.github.io/du4tnr/
 template:
   bootstrap: 5
 
+extra_css: [] # Add any custom CSS here if needed
+extra_js:
+  - docs/extra.js # Link to your custom JavaScript file
