@@ -7,4 +7,4 @@ Transparency and Reproducibility are achieved through:
 - using a table (Data Frame or CSV file) to document initial cleaning steps,
 - using a database storage for datasets.
 
-For more information, see [vingette](articles/du4tnr.html).
+For more information, see [vignette](articles/du4tnr.html).
