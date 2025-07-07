@@ -1,0 +1,42 @@
+---
+title: "dev-workflow"
+format: html
+---
+
+## Git Workflow
+```bash
+# Create and switch to feature branch
+git checkout -b feature/new-feature
+# or
+git switch -c feature/new-feature
+
+# Daily development on feature branch
+git add .
+git commit -m "Add new feature component"
+git push origin feature/new-feature
+
+# Keep feature branch updated with main
+git checkout main
+git pull origin main
+git checkout feature/new-feature
+git merge main
+# or rebase: git rebase main
+
+# Merge feature to main (after code review)
+git checkout main
+git pull origin main
+git merge feature/new-feature
+git push origin main
+
+# Clean up feature branch
+git branch -d feature/new-feature
+git push origin --delete feature/new-feature
+
+# Deploy main branch
+# (This happens automatically if main is connected to deployment)
+```
+
+## `pkgdown` deployment
+```{r}
+pkgdown::build_site()
+```
