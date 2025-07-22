@@ -24,7 +24,9 @@
 #' * **get_var(vname)**: Returns the value of the variable in database.
 #' * **var_exists(vname)**: Returns TRUE if the variable is added to the database.
 #' * **del_var(vname)**: Removes the variable from the database
-#' * **close_db()**: Closes the database connection.
+#' * **isOpen_db()**: Checkes if the database connection is valid.
+#' * **disconnect_db()**: Disconnects (closes) the database connection.
+#' * **close_db()**: an alias for `disconnect_db`, kept for compatibility.
 #' * **reconnect_db()**: Reconnects the current `du4tnr` to its original database.
 #' @md
 #' @export
@@ -45,15 +47,15 @@ dbObj <- function(dp_path = "myVars.db"){
     obj <<- save_variable_steps(obj, vname, steps)
   }
   # List File imported
-  list_files <- function(){
-    list_files.sqlite_storage(obj)
+  ls_files <- function(){
+    list_files(obj)
   }
   # List Variables
-  list_vars <- function(){
-    list_vars.sqlite_storage(obj)
+  ls_vars <- function(){
+    list_vars(obj)
   }
   # List Steps
-  list_steps <- function(vname=NULL){
+  ls_steps <- function(vname=NULL){
     vNames <- list_vars()
     if(is.null(vname)) vname <- vNames$name
     for(v in vname)
@@ -61,37 +63,43 @@ dbObj <- function(dp_path = "myVars.db"){
   }
   # Gets the Load Variables to memory
   get_var <- function(vname) {
-    load_var.sqlite_storage(obj, vname)
+    load_var(obj, vname)
   }
   # Check if a variable exists
-  var_exists <- function(vname){
-    var_exists.sqlite_storage(obj, vname)
+  exists_var <- function(vname){
+    var_exists(obj, vname)
   }
   # Delete a variable
   del_var <- function(vname){
-    delete_var.sqlite_storage(obj, vname)
+    delete_var(obj, vname)
   }
   # Close DB
-  close_db <- function(){
-    obj <<- close_db.sqlite_storage(obj)
+  discon_db <- function(){
+    obj <<- disconnect_db(obj)
+  }
+  # Is DB open?
+  is_open <- function(){
+    isOpen_db(obj)
   }
   # Initialize
-  reconnect_db <- function(){
-    obj <<- initialize_db.sqlite_storage(obj)
+  recon_db <- function(){
+    obj <<- initialize_db(obj)
   }
   #
   structure(list(getObj = function() obj,
                  add_var = add_var,
                  import_file = import_file,
                  add_step = add_step,
-                 list_files = list_files,
-                 list_vars = list_vars,
-                 list_steps = list_steps,
+                 list_files = ls_files,
+                 list_vars = ls_vars,
+                 list_steps = ls_steps,
                  get_var = get_var,
-                 var_exists = var_exists,
+                 var_exists = exists_var,
                  del_var = del_var,
-                 close_db = close_db,
-                 reconnect_db = reconnect_db),
+                 isOpen_db = is_open,
+                 disconnect_db = discon_db,
+                 close_db = discon_db,
+                 reconnect_db = recon_db),
             class = c('du4tnr', 'list'))
 }
 

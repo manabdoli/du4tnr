@@ -39,7 +39,9 @@ variable.
 \item \strong{get_var(vname)}: Returns the value of the variable in database.
 \item \strong{var_exists(vname)}: Returns TRUE if the variable is added to the database.
 \item \strong{del_var(vname)}: Removes the variable from the database
-\item \strong{close_db()}: Closes the database connection.
+\item \strong{isOpen_db()}: Checkes if the database connection is valid.
+\item \strong{disconnect_db()}: Disconnects (closes) the database connection.
+\item \strong{close_db()}: an alias for \code{disconnect_db}, kept for compatibility.
 \item \strong{reconnect_db()}: Reconnects the current \code{du4tnr} to its original database.
 }
 }

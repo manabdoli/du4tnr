@@ -32,7 +32,7 @@ NULL
 #'               steps = c("Load CSV", "Clean data", "Remove NAs"))
 #'
 #' # Clean up
-#' close_db(storage)
+#' disconnect_db(storage)
 #' }
 sqlite_storage <- function(db_path = "items.db") {
   obj <- list(
@@ -556,20 +556,36 @@ delete_var.sqlite_storage <- function(obj, name) {
 #' Close Database Connection
 #'
 #' @param obj An object of class "sqlite_storage"
-close_db <- function(obj) {
-  UseMethod("close_db")
+disconnect_db <- function(obj) {
+  UseMethod("disconnect_db")
 }
 
 #' @rdname sqlite_storage.R
 #' @description
 #' Close a sqlite_storage's connection
-close_db.sqlite_storage <- function(obj) {
+disconnect_db.sqlite_storage <- function(obj) {
   if (!is.null(obj$conn)) {
     DBI::dbDisconnect(obj$conn)
     obj$conn <- NULL
     message("Database connection closed")
   }
   invisible(obj)
+}
+
+#' @rdname sqlite_storage.R
+#' @description
+#' isOpen: checks if the Database Connection is open
+#'
+#' @param obj An object of class "sqlite_storage"
+isOpen_db <- function(obj) {
+  UseMethod("isOpen_db")
+}
+
+#' @rdname sqlite_storage.R
+#' @description
+#' Checking if the connection is open
+isOpen_db.sqlite_storage <- function(obj) {
+  !is.null(obj$conn) && DBI::dbIsValid(obj$conn)
 }
 
 #' @rdname sqlite_storage.R

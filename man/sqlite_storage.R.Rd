@@ -25,8 +25,10 @@
 \alias{var_exists.sqlite_storage}
 \alias{delete_var}
 \alias{delete_var.sqlite_storage}
-\alias{close_db}
-\alias{close_db.sqlite_storage}
+\alias{disconnect_db}
+\alias{disconnect_db.sqlite_storage}
+\alias{isOpen_db}
+\alias{isOpen_db.sqlite_storage}
 \alias{print.sqlite_storage}
 \title{SQLite Storage for improving Transparency and Reproducibility}
 \usage{
@@ -76,9 +78,13 @@ delete_var(obj, name)
 
 \method{delete_var}{sqlite_storage}(obj, name)
 
-close_db(obj)
+disconnect_db(obj)
 
-\method{close_db}{sqlite_storage}(obj)
+\method{disconnect_db}{sqlite_storage}(obj)
+
+isOpen_db(obj)
+
+\method{isOpen_db}{sqlite_storage}(obj)
 
 \method{print}{sqlite_storage}(x, ...)
 }
@@ -174,6 +180,10 @@ Close Database Connection
 
 Close a sqlite_storage's connection
 
+isOpen: checks if the Database Connection is open
+
+Checking if the connection is open
+
 Print a sqlite_storage object
 }
 \examples{
@@ -191,7 +201,7 @@ save_file_var(storage, "data", "mydata.csv",
               steps = c("Load CSV", "Clean data", "Remove NAs"))
 
 # Clean up
-close_db(storage)
+disconnect_db(storage)
 }
 }
 \keyword{internal}
