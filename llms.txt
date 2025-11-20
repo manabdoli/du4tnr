@@ -1,0 +1,61 @@
+# du4tnr: Data Utility for Transparency and Reproducibility
+
+This package was originally developed to help student scholars in their
+statistical research with a specific dataset.
+
+All datasets are removed and it is being used a general purpose package
+for collaboration between students.
+
+Transparency and Reproducibility are achieved through: - using a table
+(Data Frame or CSV file) to document initial cleaning steps, - using a
+database storage for datasets.
+
+For more information, see
+[vignette](https://manabdoli.github.io/du4tnr/articles/du4tnr.md).
+
+# Package index
+
+## All functions
+
+- [`briefSummary()`](https://manabdoli.github.io/du4tnr/reference/briefSummary.md)
+  : Generating Summary Tables for levels of a categorical response.
+
+- [`cleanDS()`](https://manabdoli.github.io/du4tnr/reference/cleanDS.md)
+  : Cleaning a Dataset
+
+- [`cont_table()`](https://manabdoli.github.io/du4tnr/reference/cont_table.md)
+  : Contingency Table
+
+- [`dbObj()`](https://manabdoli.github.io/du4tnr/reference/dbObj.md) :
+  dbObj creates an object with a connection to a SQLite database file
+  and a set of functions for recording and retrieving variables in the
+  dataset.
+
+- [`describe_ds()`](https://manabdoli.github.io/du4tnr/reference/describe_ds.md)
+  : Describe a Dataset
+
+- [`total_col()`](https://manabdoli.github.io/du4tnr/reference/tableSummary.md)
+  [`total_row()`](https://manabdoli.github.io/du4tnr/reference/tableSummary.md)
+  :
+
+  Summarizing Functions for `table` Object
+
+- [`setNAs()`](https://manabdoli.github.io/du4tnr/reference/varClean.md)
+  : Variable cleaning functions
+
+- [`whichds()`](https://manabdoli.github.io/du4tnr/reference/which_ds.md)
+  [`which_ds()`](https://manabdoli.github.io/du4tnr/reference/which_ds.md)
+  : Searching a column name in datasets (data frames)
+
+- [`mcrBin()`](https://manabdoli.github.io/du4tnr/reference/xvalid.R.md)
+  [`misMul()`](https://manabdoli.github.io/du4tnr/reference/xvalid.R.md)
+  [`misMulOH()`](https://manabdoli.github.io/du4tnr/reference/xvalid.R.md)
+  [`mse()`](https://manabdoli.github.io/du4tnr/reference/xvalid.R.md)
+  [`cvGlm()`](https://manabdoli.github.io/du4tnr/reference/xvalid.R.md)
+  : K-Fold Cross Validation and Accuracy Functions
+
+# Articles
+
+### All vignettes
+
+- [du4tnr](https://manabdoli.github.io/du4tnr/articles/du4tnr.md):

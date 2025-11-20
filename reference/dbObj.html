@@ -92,7 +92,9 @@ variable.</p></li>
 <li><p><strong>get_var(vname)</strong>: Returns the value of the variable in database.</p></li>
 <li><p><strong>var_exists(vname)</strong>: Returns TRUE if the variable is added to the database.</p></li>
 <li><p><strong>del_var(vname)</strong>: Removes the variable from the database</p></li>
-<li><p><strong>close_db()</strong>: Closes the database connection.</p></li>
+<li><p><strong>isOpen_db()</strong>: Checkes if the database connection is valid.</p></li>
+<li><p><strong>disconnect_db()</strong>: Disconnects (closes) the database connection.</p></li>
+<li><p><strong>close_db()</strong>: an alias for <code>disconnect_db</code>, kept for compatibility.</p></li>
 <li><p><strong>reconnect_db()</strong>: Reconnects the current <code>du4tnr</code> to its original database.</p></li>
 </ul></div>
 
@@ -105,7 +107,7 @@ variable.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
