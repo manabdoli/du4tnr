@@ -55,6 +55,8 @@ and functions for updating and accessing it, including:
 - **reconnect_db()**: Reconnects the current `du4tnr` to its original
   database.
 
+- **verify_open()**: reopens the db if the connection is dropped.
+
 Parameters used in these functions are:
 
 - **`vname`** the variable name

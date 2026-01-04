@@ -9,7 +9,7 @@ set of functions for recording and retrieving variables in the dataset."></head>
 
     <a class="navbar-brand me-2" href="../index.html">du4tnr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,6 +73,7 @@ variable.</p></li>
 <li><p><strong>disconnect_db()</strong>: Disconnects (closes) the database connection.</p></li>
 <li><p><strong>close_db()</strong>: an alias for <code>disconnect_db</code>, kept for compatibility.</p></li>
 <li><p><strong>reconnect_db()</strong>: Reconnects the current <code>du4tnr</code> to its original database.</p></li>
+<li><p><strong>verify_open()</strong>: reopens the db if the connection is dropped.</p></li>
 </ul><p>Parameters used in these functions are:</p><ul><li><p><strong><code>vname</code></strong> the variable name</p></li>
 <li><p><strong><code>value</code></strong> the value to be assigned to the variable</p></li>
 <li><p><strong><code>source_file</code></strong> the name of the file associated with the variable</p></li>
