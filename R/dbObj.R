@@ -1,4 +1,6 @@
-#' dbObj creates an object with a connection to a SQLite database file and a
+#' @title dbObj: Datbase Object
+#' @description
+#' creates an object with a connection to a SQLite database file and a
 #'  set of functions for recording and retrieving variables in the dataset.
 #'
 #' @param db_path The path to the sqlite database file.

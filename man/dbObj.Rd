@@ -2,8 +2,7 @@
 % Please edit documentation in R/dbObj.R
 \name{dbObj}
 \alias{dbObj}
-\title{dbObj creates an object with a connection to a SQLite database file and a
-set of functions for recording and retrieving variables in the dataset.}
+\title{dbObj: Datbase Object}
 \usage{
 dbObj(db_path = "myVars.db")
 }
@@ -45,6 +44,6 @@ Parameters used in these functions are:
 }
 }
 \description{
-dbObj creates an object with a connection to a SQLite database file and a
+creates an object with a connection to a SQLite database file and a
 set of functions for recording and retrieving variables in the dataset.
 }
