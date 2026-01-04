@@ -154,13 +154,13 @@ print(projDB)
 #> 
 #> items:
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:39:25.749745
-#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:39:25.753969
-#> 3 cleaningInstructions data.frame        <NA>   2026-01-04 03:39:25.7522
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:54:53.742691
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:54:53.747158
+#> 3 cleaningInstructions data.frame        <NA> 2026-01-04 03:54:53.745421
 #>                   updated_at
-#> 1 2026-01-04 03:39:25.749745
-#> 2 2026-01-04 03:39:25.753969
-#> 3   2026-01-04 03:39:25.7522
+#> 1 2026-01-04 03:54:53.742691
+#> 2 2026-01-04 03:54:53.747158
+#> 3 2026-01-04 03:54:53.745421
 ```
 
 Let’s close the database:
@@ -181,13 +181,13 @@ Let’s reuse it:
 projDB$reconnect_db() # No need to reintroduce the path
 print(projDB$list_vars()) # Just listing variables
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:39:25.749745
-#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:39:25.753969
-#> 3 cleaningInstructions data.frame        <NA>   2026-01-04 03:39:25.7522
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:54:53.742691
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:54:53.747158
+#> 3 cleaningInstructions data.frame        <NA> 2026-01-04 03:54:53.745421
 #>                   updated_at
-#> 1 2026-01-04 03:39:25.749745
-#> 2 2026-01-04 03:39:25.753969
-#> 3   2026-01-04 03:39:25.7522
+#> 1 2026-01-04 03:54:53.742691
+#> 2 2026-01-04 03:54:53.747158
+#> 3 2026-01-04 03:54:53.745421
 ```
 
 Now, let’s access the database using a second object:
@@ -196,13 +196,13 @@ Now, let’s access the database using a second object:
 myDB <- dbObj(db_path = dbPath)
 print(myDB$list_vars())
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:39:25.749745
-#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:39:25.753969
-#> 3 cleaningInstructions data.frame        <NA>   2026-01-04 03:39:25.7522
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:54:53.742691
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:54:53.747158
+#> 3 cleaningInstructions data.frame        <NA> 2026-01-04 03:54:53.745421
 #>                   updated_at
-#> 1 2026-01-04 03:39:25.749745
-#> 2 2026-01-04 03:39:25.753969
-#> 3   2026-01-04 03:39:25.7522
+#> 1 2026-01-04 03:54:53.742691
+#> 2 2026-01-04 03:54:53.747158
+#> 3 2026-01-04 03:54:53.745421
 ```
 
 And let’s create a source file to remove NAs and add the result as a new
@@ -231,15 +231,15 @@ print(myDB)
 #> 
 #> items:
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:39:25.749745
-#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:39:25.753969
-#> 3       MTcars-cleaned data.frame        <NA> 2026-01-04 03:39:26.039446
-#> 4 cleaningInstructions data.frame        <NA>   2026-01-04 03:39:25.7522
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:54:53.742691
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:54:53.747158
+#> 3       MTcars-cleaned data.frame        <NA> 2026-01-04 03:54:54.033506
+#> 4 cleaningInstructions data.frame        <NA> 2026-01-04 03:54:53.745421
 #>                   updated_at
-#> 1 2026-01-04 03:39:25.749745
-#> 2 2026-01-04 03:39:25.753969
-#> 3 2026-01-04 03:39:26.039446
-#> 4   2026-01-04 03:39:25.7522
+#> 1 2026-01-04 03:54:53.742691
+#> 2 2026-01-04 03:54:53.747158
+#> 3 2026-01-04 03:54:54.033506
+#> 4 2026-01-04 03:54:53.745421
 ```
 
 Let’s check the first instance of the database:
@@ -247,15 +247,15 @@ Let’s check the first instance of the database:
 ``` r
 projDB$list_vars()
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:39:25.749745
-#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:39:25.753969
-#> 3       MTcars-cleaned data.frame        <NA> 2026-01-04 03:39:26.039446
-#> 4 cleaningInstructions data.frame        <NA>   2026-01-04 03:39:25.7522
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:54:53.742691
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:54:53.747158
+#> 3       MTcars-cleaned data.frame        <NA> 2026-01-04 03:54:54.033506
+#> 4 cleaningInstructions data.frame        <NA> 2026-01-04 03:54:53.745421
 #>                   updated_at
-#> 1 2026-01-04 03:39:25.749745
-#> 2 2026-01-04 03:39:25.753969
-#> 3 2026-01-04 03:39:26.039446
-#> 4   2026-01-04 03:39:25.7522
+#> 1 2026-01-04 03:54:53.742691
+#> 2 2026-01-04 03:54:53.747158
+#> 3 2026-01-04 03:54:54.033506
+#> 4 2026-01-04 03:54:53.745421
 ```
 
 ``` r

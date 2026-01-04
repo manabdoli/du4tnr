@@ -1,8 +1,7 @@
-# dbObj creates an object with a connection to a SQLite database file and a set of functions for recording and retrieving variables in the dataset.
+# dbObj: Datbase Object
 
-dbObj creates an object with a connection to a SQLite database file and
-a set of functions for recording and retrieving variables in the
-dataset.
+creates an object with a connection to a SQLite database file and a set
+of functions for recording and retrieving variables in the dataset.
 
 ## Usage
 

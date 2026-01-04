@@ -12,9 +12,7 @@
   : Contingency Table
 
 - [`dbObj()`](https://manabdoli.github.io/du4tnr/reference/dbObj.md) :
-  dbObj creates an object with a connection to a SQLite database file
-  and a set of functions for recording and retrieving variables in the
-  dataset.
+  dbObj: Datbase Object
 
 - [`describe_ds()`](https://manabdoli.github.io/du4tnr/reference/describe_ds.md)
   : Describe a Dataset
