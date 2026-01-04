@@ -1,5 +1,11 @@
 # Changelog
 
+## du4tnr 0.2.1
+
+### Fixes
+
+- The title of `dbobj` help file was fixed.
+
 ## du4tnr 0.2.0
 
 ### New features
