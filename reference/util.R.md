@@ -37,6 +37,6 @@ A new variable by concatenating values of variables given by `formula`.
 ## Examples
 
 ``` r
-concat(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), ~A+B)
-#> Error in concat(data.frame(A = c("a", "b", "a", "b"), B = c("x", "y",     "y", "x")), ~A + B): could not find function "concat"
+du4tnr:::concat(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), ~A+B)
+#> [1] "a-x" "b-y" "a-y" "b-x"
 ```

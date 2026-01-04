@@ -8,14 +8,14 @@
 
 ## Citation
 
-Abdoli M (2025). *du4tnr: Data Utility for Transparency and
-Reproducibility (DU4TnR)*. R package version 0.0.1.0000,
+Abdoli M (2026). *du4tnr: Data Utility for Transparency and
+Reproducibility (DU4TnR)*. R package version 0.1.0,
 <https://manabdoli.github.io/du4tnr/>.
 
     @Manual{,
       title = {du4tnr: Data Utility for Transparency and Reproducibility (DU4TnR)},
       author = {Mansour Abdoli},
-      year = {2025},
-      note = {R package version 0.0.1.0000},
+      year = {2026},
+      note = {R package version 0.1.0},
       url = {https://manabdoli.github.io/du4tnr/},
     }

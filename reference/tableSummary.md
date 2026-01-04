@@ -50,6 +50,10 @@ total_row(x, na.rm = FALSE)
 
   a table or data.frame object.
 
+- na.rm:
+
+  a logical value; TRUE will remove NAs from `x` before processing.
+
 ## Value
 
 `total_col` returns a new object with an additional column, named

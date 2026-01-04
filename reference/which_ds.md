@@ -23,10 +23,6 @@ which_ds(columnName = NULL, ...)
 
   a comma separated list of datasets
 
-- dss:
-
-  is a list of all datasets where variable names will be searched for.
-
 ## Value
 
 is a named, logical array that determines which dataset includes

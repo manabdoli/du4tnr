@@ -7,7 +7,7 @@ dataset.
 ## Usage
 
 ``` r
-dbObj(dp_path = "myVars.db")
+dbObj(db_path = "myVars.db")
 ```
 
 ## Arguments
@@ -15,30 +15,6 @@ dbObj(dp_path = "myVars.db")
 - db_path:
 
   The path to the sqlite database file.
-
-- vname:
-
-  the variable name
-
-- value:
-
-  the value to be assigned to the variable
-
-- source_file:
-
-  the name of the file associated with the variable
-
-- file_path:
-
-  the full to the file to be imported as a variable or uploaded.
-
-- steps:
-
-  a character vector used for documenting steps in creating the variable
-
-- processor:
-
-  a function for customizing importing/uploading files
 
 ## Value
 
@@ -78,3 +54,19 @@ and functions for updating and accessing it, including:
 
 - **reconnect_db()**: Reconnects the current `du4tnr` to its original
   database.
+
+Parameters used in these functions are:
+
+- **`vname`** the variable name
+
+- **`value`** the value to be assigned to the variable
+
+- **`source_file`** the name of the file associated with the variable
+
+- **`file_path`** the full to the file to be imported as a variable or
+  uploaded.
+
+- **`steps`** a character vector used for documenting steps in creating
+  the variable
+
+- **`processor`** a function for customizing importing/uploading files

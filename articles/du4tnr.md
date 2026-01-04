@@ -57,7 +57,7 @@ cleanMTcars
   variables:
 
 ``` r
-cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) %>% tail(10)
 #>                  Engine.Shape Transmission Forward.Gears
 #> AMC Javelin           V-shape       Manual             3
 #> Camaro Z28            V-shape       Manual             3
@@ -78,7 +78,7 @@ cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
 processedMTcars <- cleanDS(mtcars, cleanDF=cleanMTcars,
                          Rename=FALSE, addCols=colnames(mtcars))
 
-processedMTcars |> head(10)
+processedMTcars %>% head(10)
 #>                         vs        am gear  mpg cyl  disp  hp drat    wt  qsec
 #> Mazda RX4          V-shape Automatic    4 21.0   6 160.0 110 3.90 2.620 16.46
 #> Mazda RX4 Wag      V-shape Automatic    4 21.0   6 160.0 110 3.90 2.875 17.02
@@ -127,7 +127,7 @@ if(file.exists(dbPath)) stop('Cannot remove ', dbPath, '!\n',
 
 ``` r
 # Create a new SQLite database or open an existing one:
-projDB <- dbObj(dp_path = dbPath)
+projDB <- dbObj(db_path = dbPath)
 print(projDB)
 #> SQLite Variable Storage Object
 #> Database path: myProject.db 
@@ -154,13 +154,13 @@ print(projDB)
 #> 
 #> items:
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA>  2025-11-20 07:23:13.36318
-#> 2     MTcars-Processed data.frame        <NA> 2025-11-20 07:23:13.373095
-#> 3 cleaningInstructions data.frame        <NA> 2025-11-20 07:23:13.371396
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:15:58.652298
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:15:58.656308
+#> 3 cleaningInstructions data.frame        <NA> 2026-01-04 03:15:58.654599
 #>                   updated_at
-#> 1  2025-11-20 07:23:13.36318
-#> 2 2025-11-20 07:23:13.373095
-#> 3 2025-11-20 07:23:13.371396
+#> 1 2026-01-04 03:15:58.652298
+#> 2 2026-01-04 03:15:58.656308
+#> 3 2026-01-04 03:15:58.654599
 ```
 
 Let’s close the database:
@@ -181,28 +181,28 @@ Let’s reuse it:
 projDB$reconnect_db() # No need to reintroduce the path
 print(projDB$list_vars()) # Just listing variables
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA>  2025-11-20 07:23:13.36318
-#> 2     MTcars-Processed data.frame        <NA> 2025-11-20 07:23:13.373095
-#> 3 cleaningInstructions data.frame        <NA> 2025-11-20 07:23:13.371396
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:15:58.652298
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:15:58.656308
+#> 3 cleaningInstructions data.frame        <NA> 2026-01-04 03:15:58.654599
 #>                   updated_at
-#> 1  2025-11-20 07:23:13.36318
-#> 2 2025-11-20 07:23:13.373095
-#> 3 2025-11-20 07:23:13.371396
+#> 1 2026-01-04 03:15:58.652298
+#> 2 2026-01-04 03:15:58.656308
+#> 3 2026-01-04 03:15:58.654599
 ```
 
 Now, let’s access the database using a second object:
 
 ``` r
-myDB <- dbObj(dp_path = dbPath)
+myDB <- dbObj(db_path = dbPath)
 print(myDB$list_vars())
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA>  2025-11-20 07:23:13.36318
-#> 2     MTcars-Processed data.frame        <NA> 2025-11-20 07:23:13.373095
-#> 3 cleaningInstructions data.frame        <NA> 2025-11-20 07:23:13.371396
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:15:58.652298
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:15:58.656308
+#> 3 cleaningInstructions data.frame        <NA> 2026-01-04 03:15:58.654599
 #>                   updated_at
-#> 1  2025-11-20 07:23:13.36318
-#> 2 2025-11-20 07:23:13.373095
-#> 3 2025-11-20 07:23:13.371396
+#> 1 2026-01-04 03:15:58.652298
+#> 2 2026-01-04 03:15:58.656308
+#> 3 2026-01-04 03:15:58.654599
 ```
 
 And let’s create a source file to remove NAs and add the result as a new
@@ -231,15 +231,15 @@ print(myDB)
 #> 
 #> items:
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA>  2025-11-20 07:23:13.36318
-#> 2     MTcars-Processed data.frame        <NA> 2025-11-20 07:23:13.373095
-#> 3       MTcars-cleaned data.frame        <NA>  2025-11-20 07:23:13.66449
-#> 4 cleaningInstructions data.frame        <NA> 2025-11-20 07:23:13.371396
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:15:58.652298
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:15:58.656308
+#> 3       MTcars-cleaned data.frame        <NA> 2026-01-04 03:15:58.936364
+#> 4 cleaningInstructions data.frame        <NA> 2026-01-04 03:15:58.654599
 #>                   updated_at
-#> 1  2025-11-20 07:23:13.36318
-#> 2 2025-11-20 07:23:13.373095
-#> 3  2025-11-20 07:23:13.66449
-#> 4 2025-11-20 07:23:13.371396
+#> 1 2026-01-04 03:15:58.652298
+#> 2 2026-01-04 03:15:58.656308
+#> 3 2026-01-04 03:15:58.936364
+#> 4 2026-01-04 03:15:58.654599
 ```
 
 Let’s check the first instance of the database:
@@ -247,15 +247,15 @@ Let’s check the first instance of the database:
 ``` r
 projDB$list_vars()
 #>                   name       type source_file                 created_at
-#> 1              MTCars0 data.frame        <NA>  2025-11-20 07:23:13.36318
-#> 2     MTcars-Processed data.frame        <NA> 2025-11-20 07:23:13.373095
-#> 3       MTcars-cleaned data.frame        <NA>  2025-11-20 07:23:13.66449
-#> 4 cleaningInstructions data.frame        <NA> 2025-11-20 07:23:13.371396
+#> 1              MTCars0 data.frame        <NA> 2026-01-04 03:15:58.652298
+#> 2     MTcars-Processed data.frame        <NA> 2026-01-04 03:15:58.656308
+#> 3       MTcars-cleaned data.frame        <NA> 2026-01-04 03:15:58.936364
+#> 4 cleaningInstructions data.frame        <NA> 2026-01-04 03:15:58.654599
 #>                   updated_at
-#> 1  2025-11-20 07:23:13.36318
-#> 2 2025-11-20 07:23:13.373095
-#> 3  2025-11-20 07:23:13.66449
-#> 4 2025-11-20 07:23:13.371396
+#> 1 2026-01-04 03:15:58.652298
+#> 2 2026-01-04 03:15:58.656308
+#> 3 2026-01-04 03:15:58.936364
+#> 4 2026-01-04 03:15:58.654599
 ```
 
 ``` r
@@ -310,8 +310,8 @@ These functions can add total column and row to a count table and
 data.frame:
 
 ``` r
-cont_table(y, vs+am~gear, useNA = 'ifany') |> 
-  total_row() |> total_col()
+cont_table(y, vs+am~gear, useNA = 'ifany') %>% 
+  total_row() %>% total_col()
 #>                     3  4 <NA> Total.Col
 #> Straight-Automatic  0  6    1         7
 #> Straight-Manual     3  4    0         7
@@ -321,7 +321,7 @@ cont_table(y, vs+am~gear, useNA = 'ifany') |>
 ```
 
 ``` r
-y |> total_row() |> tail(10)
+y %>% total_row() %>% tail(10)
 #>                        vs        am gear   mpg cyl   disp   hp   drat      wt
 #> Camaro Z28        V-shape    Manual    3  13.3   8  350.0  245   3.73   3.840
 #> Pontiac Firebird  V-shape    Manual    3  19.2   8  400.0  175   3.08   3.845

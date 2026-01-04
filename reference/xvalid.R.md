@@ -32,7 +32,7 @@ cvGlm(
   formula,
   data,
   K = 10,
-  cost = accBin,
+  cost = mcrBin,
   method = glm,
   predType = "response",
   FUN = mean,
@@ -88,6 +88,10 @@ cvGlm(
 
   is the type of prediction that is needed for the `cost` model to work
   properly. The default value is 'response'.
+
+- na.rm:
+
+  a logical value; TRUE will remove NAs from `data` before processing.
 
 - ...:
 

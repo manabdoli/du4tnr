@@ -55,7 +55,7 @@ returns a dataset consisting of variables in `Name` (cleaned) and
     NA_Vals=c('','','5'),
     Rename=c('Engine.Shape','Transmission', 'Forward.Gears'))
 # Extracting Data
-cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) %>% tail(10)
 #>                  Engine.Shape Transmission Forward.Gears
 #> AMC Javelin           V-shape       Manual             3
 #> Camaro Z28            V-shape       Manual             3
@@ -67,7 +67,7 @@ cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
 #> Ferrari Dino          V-shape    Automatic            NA
 #> Maserati Bora         V-shape    Automatic            NA
 #> Volvo 142E           Straight    Automatic             4
-cleanDS(mtcars, cleanDF=cleanMTcars, Rename=FALSE, addCols=colnames(mtcars)) |> head(10)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=FALSE, addCols=colnames(mtcars)) %>% head(10)
 #>                         vs        am gear  mpg cyl  disp  hp drat    wt  qsec
 #> Mazda RX4          V-shape Automatic    4 21.0   6 160.0 110 3.90 2.620 16.46
 #> Mazda RX4 Wag      V-shape Automatic    4 21.0   6 160.0 110 3.90 2.875 17.02
