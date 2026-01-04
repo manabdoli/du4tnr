@@ -31,6 +31,7 @@ variable.
 \item \strong{disconnect_db()}: Disconnects (closes) the database connection.
 \item \strong{close_db()}: an alias for \code{disconnect_db}, kept for compatibility.
 \item \strong{reconnect_db()}: Reconnects the current \code{du4tnr} to its original database.
+\item \strong{verify_open()}: reopens the db if the connection is dropped.
 }
 
 Parameters used in these functions are:

@@ -22,6 +22,7 @@
 #' * **disconnect_db()**: Disconnects (closes) the database connection.
 #' * **close_db()**: an alias for `disconnect_db`, kept for compatibility.
 #' * **reconnect_db()**: Reconnects the current `du4tnr` to its original database.
+#' * **verify_open()**: reopens the db if the connection is dropped.
 #'
 #' Parameters used in these functions are:
 #'
@@ -40,26 +41,32 @@ dbObj <- function(db_path = "myVars.db"){
   obj <- sqlite_storage(db_path)
   # Adding/Updating a variable
   add_var <- function(vname, value, source_file = NULL, steps = NULL){
+    verify_open()
     obj <<- save_var(obj, vname, value, source_file, steps)
   }
   # Reads a dataset file into a variable
   import_file <- function(vname, file_path, steps = NULL, processor = NULL) {
+    verify_open()
     obj <<- save_file_var(obj, vname, file_path, steps, processor)
   }
   # Documents Steps used in creating a variable
   add_step <- function(vname, steps){
+    verify_open()
     obj <<- save_variable_steps(obj, vname, steps)
   }
   # List File imported
   ls_files <- function(){
+    verify_open()
     list_files(obj)
   }
   # List Variables
   ls_vars <- function(){
+    verify_open()
     list_vars(obj)
   }
   # List Steps
   ls_steps <- function(vname=NULL){
+    verify_open()
     vNames <- ls_vars()
     if(is.null(vname)) vname <- vNames$name
     for(v in vname)
@@ -67,18 +74,22 @@ dbObj <- function(db_path = "myVars.db"){
   }
   # Gets the Load Variables to memory
   get_var <- function(vname) {
+    verify_open()
     load_var(obj, vname)
   }
   # Check if a variable exists
   exists_var <- function(vname){
+    verify_open()
     var_exists(obj, vname)
   }
   # Delete a variable
   del_var <- function(vname){
+    verify_open()
     delete_var(obj, vname)
   }
   # Close DB
   discon_db <- function(){
+    verify_open()
     obj <<- disconnect_db(obj)
   }
   # Is DB open?
@@ -88,6 +99,10 @@ dbObj <- function(db_path = "myVars.db"){
   # Initialize
   recon_db <- function(){
     obj <<- initialize_db(obj)
+  }
+  # Verify bd is open
+  verify_open <- function(){
+    if(!is_open()) recon_db()
   }
   #
   structure(list(getObj = function() obj,
