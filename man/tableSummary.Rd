@@ -30,6 +30,8 @@ total_row(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{a table or data.frame object.}
+
+\item{na.rm}{a logical value; TRUE will remove NAs from \code{x} before processing.}
 }
 \value{
 \code{total_col} returns a new object with an additional column,

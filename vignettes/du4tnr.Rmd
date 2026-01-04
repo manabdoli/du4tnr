@@ -46,7 +46,7 @@ cleanMTcars
 
   - `cleanDS` uses the `cleanMTcars` to select, clean and rename three variables: 
 ```{r}
-cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) %>% tail(10)
 
 ```
 
@@ -55,7 +55,7 @@ cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
 processedMTcars <- cleanDS(mtcars, cleanDF=cleanMTcars,
                          Rename=FALSE, addCols=colnames(mtcars))
 
-processedMTcars |> head(10)
+processedMTcars %>% head(10)
 ```
 
 ### SQLite Storage
@@ -77,7 +77,7 @@ if(file.exists(dbPath)) stop('Cannot remove ', dbPath, '!\n',
 
 ```{r}
 # Create a new SQLite database or open an existing one:
-projDB <- dbObj(dp_path = dbPath)
+projDB <- dbObj(db_path = dbPath)
 print(projDB)
 ```
 
@@ -107,7 +107,7 @@ print(projDB$list_vars()) # Just listing variables
 
 Now, let's access the database using a second object:
 ```{r}
-myDB <- dbObj(dp_path = dbPath)
+myDB <- dbObj(db_path = dbPath)
 print(myDB$list_vars())
 ```
 
@@ -161,13 +161,13 @@ cont_table(y, vs+am~gear, useNA = 'ifany')
 
 These functions can add total column and row to a count table and data.frame:
 ```{r}
-cont_table(y, vs+am~gear, useNA = 'ifany') |> 
-  total_row() |> total_col()
+cont_table(y, vs+am~gear, useNA = 'ifany') %>% 
+  total_row() %>% total_col()
 
 ```
 
 ```{r}
-y |> total_row() |> tail(10)
+y %>% total_row() %>% tail(10)
 ```
 
 #### `describe_ds()`: Generates a Summary of Variables

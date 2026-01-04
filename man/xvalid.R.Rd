@@ -21,7 +21,7 @@ cvGlm(
   formula,
   data,
   K = 10,
-  cost = accBin,
+  cost = mcrBin,
   method = glm,
   predType = "response",
   FUN = mean,
@@ -55,6 +55,8 @@ a model object. The default value is \code{glm}.}
 
 \item{predType}{is the type of prediction that is needed for the \code{cost} model
 to work properly. The default value is 'response'.}
+
+\item{na.rm}{a logical value; TRUE will remove NAs from \code{data} before processing.}
 
 \item{...}{other parameters; all are passed to \code{method} function.}
 }

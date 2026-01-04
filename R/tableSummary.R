@@ -2,6 +2,8 @@
 #' @name tableSummary
 #' @title Summarizing Functions for `table` Object
 #' @description Utility functions for adding Totals
+#' @param x a table or data.frame object.
+#' @param na.rm a logical value; TRUE will remove NAs from `x` before processing.
 #'
 #'
 NULL
@@ -9,7 +11,6 @@ NULL
 #' @rdname tableSummary
 #' @description
 #' `total_col` adds a column summary to a table/data.frame.
-#' @param x a table or data.frame object.
 #' @returns `total_col` returns a new object with an additional column,
 #'  named `Total` or `Total.Col`
 #' @export
@@ -21,7 +22,6 @@ total_col <- function(x, na.rm = FALSE){
 #' @rdname tableSummary
 #' @description
 #' `total_row` adds a row summary to a table/data.frame.
-#' @param x a table or data.frame object.
 #' @returns `total_row` returns a new object with an additional row,
 #'  named `Total` or `Total.Row`
 #' @export
@@ -128,7 +128,7 @@ total_col.data.frame <- function(x, na.rm = FALSE){
     return(x)
   }
   # Add Total Column (row sums)
-  cIdx <- which(lapply(x, is.numeric) |> unlist())
+  cIdx <- which(lapply(x, is.numeric) %>% unlist())
   if(sum(cIdx)==0) {
     x <- cbind(x, NA)
   } else {
@@ -163,7 +163,7 @@ total_row.data.frame <- function(x, na.rm = FALSE){
     return(x)
   }
   # Add Total Row (column sums)
-  cIdx <- which(lapply(x, is.numeric) |> unlist())
+  cIdx <- which(lapply(x, is.numeric) %>% unlist())
   if(sum(cIdx)==0) {
     x <- rbind(x, NA)
   } else {

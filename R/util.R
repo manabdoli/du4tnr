@@ -28,7 +28,7 @@ calculate_file_hash <- function(file_path) {
 #'  variables)
 #' @returns A new variable by concatenating values of variables given by `formula`.
 #' @examples
-#' concat(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), ~A+B)
+#' du4tnr:::concat(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), ~A+B)
 #'
 concat <- function(x, formula){
   varList <- strsplit(as.character(formula)[[2]], split = '\\+')[[1]]

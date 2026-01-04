@@ -40,7 +40,7 @@ Cleaning a Dataset
     NA_Vals=c('','','5'),
     Rename=c('Engine.Shape','Transmission', 'Forward.Gears'))
 # Extracting Data
-cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) |> tail(10)
-cleanDS(mtcars, cleanDF=cleanMTcars, Rename=FALSE, addCols=colnames(mtcars)) |> head(10)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=TRUE) \%>\% tail(10)
+cleanDS(mtcars, cleanDF=cleanMTcars, Rename=FALSE, addCols=colnames(mtcars)) \%>\% head(10)
 
 }

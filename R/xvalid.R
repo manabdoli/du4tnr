@@ -49,8 +49,10 @@ misMulOH <- function(yhat, y, FUN=mean){
   if(fns[1]%in% c("c", "list")) fns <- fns[-1]
   fs <- sapply(fns, get)
   prds <- apply(yhat, 1, which.max)
-  obsr <- apply(y, 1, which.max)
-  sapply(1:length(fns), \(g) fs[[g]](1-prdAcc))
+  obsr <- if(is.factor(y)) as.integer(y) else
+    if(!is.vector(y) & NCOL(y)>1) apply(y, 1, which.max) else
+      y
+  sapply(1:length(fns), \(g) fs[[g]](prds!=obsr))
 }
 
 #' @rdname xvalid.R
@@ -76,12 +78,14 @@ mse <- function(yhat, y){
 #'   a model object. The default value is `glm`.
 #' @param predType is the type of prediction that is needed for the `cost` model
 #' to work properly. The default value is 'response'.
+#' @param na.rm a logical value; TRUE will remove NAs from `data` before processing.
 #' @param ... other parameters; all are passed to `method` function.
 #' @returns `cvGlm` returns an array of `K` calculated `cost` values computed for the train/test
 #'   pairs generated from the data.
+#' @importFrom stats as.formula glm predict
 #' @export
 cvGlm <- function(formula, data, K=10,
-                  cost=accBin,
+                  cost=mcrBin,
                   method=glm,
                   predType="response",
                   FUN=mean,

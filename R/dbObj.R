@@ -2,15 +2,9 @@
 #'  set of functions for recording and retrieving variables in the dataset.
 #'
 #' @param db_path The path to the sqlite database file.
-#' @param vname the variable name
-#' @param value the value to be assigned to the variable
-#' @param source_file the name of the file associated with the variable
-#' @param file_path the full to the file to be imported as a variable or uploaded.
-#' @param steps a character vector used for documenting steps in creating the variable
-#' @param processor a function for customizing importing/uploading files
-#'
 #' @return `dbObj` reurns a `du4tnr` object which includes a sqlite_storage
 #'  object and functions for updating and accessing it, including:
+#'
 #' * **add_var(vname, value, source_file = NULL, steps = NULL)**: adds a variable to
 #'  the database and updates the source file and steps if supplied.
 #' * **import_file(vname, file_path, steps = NULL, processor = NULL)**: imports
@@ -28,12 +22,22 @@
 #' * **disconnect_db()**: Disconnects (closes) the database connection.
 #' * **close_db()**: an alias for `disconnect_db`, kept for compatibility.
 #' * **reconnect_db()**: Reconnects the current `du4tnr` to its original database.
+#'
+#' Parameters used in these functions are:
+#'
+#' * **`vname`** the variable name
+#' * **`value`** the value to be assigned to the variable
+#' * **`source_file`** the name of the file associated with the variable
+#' * **`file_path`** the full to the file to be imported as a variable or uploaded.
+#' * **`steps`** a character vector used for documenting steps in creating the variable
+#' * **`processor`** a function for customizing importing/uploading files
+#'
 #' @md
 #' @export
-dbObj <- function(dp_path = "myVars.db"){
+dbObj <- function(db_path = "myVars.db"){
   obj <- NULL
   # Creating the object
-  obj <- sqlite_storage(dp_path)
+  obj <- sqlite_storage(db_path)
   # Adding/Updating a variable
   add_var <- function(vname, value, source_file = NULL, steps = NULL){
     obj <<- save_var(obj, vname, value, source_file, steps)
@@ -56,7 +60,7 @@ dbObj <- function(dp_path = "myVars.db"){
   }
   # List Steps
   ls_steps <- function(vname=NULL){
-    vNames <- list_vars()
+    vNames <- ls_vars()
     if(is.null(vname)) vname <- vNames$name
     for(v in vname)
       print(get_provenance.sqlite_storage(obj, v))

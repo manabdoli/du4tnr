@@ -5,22 +5,10 @@
 \title{dbObj creates an object with a connection to a SQLite database file and a
 set of functions for recording and retrieving variables in the dataset.}
 \usage{
-dbObj(dp_path = "myVars.db")
+dbObj(db_path = "myVars.db")
 }
 \arguments{
 \item{db_path}{The path to the sqlite database file.}
-
-\item{vname}{the variable name}
-
-\item{value}{the value to be assigned to the variable}
-
-\item{source_file}{the name of the file associated with the variable}
-
-\item{file_path}{the full to the file to be imported as a variable or uploaded.}
-
-\item{steps}{a character vector used for documenting steps in creating the variable}
-
-\item{processor}{a function for customizing importing/uploading files}
 }
 \value{
 \code{dbObj} reurns a \code{du4tnr} object which includes a sqlite_storage
@@ -43,6 +31,16 @@ variable.
 \item \strong{disconnect_db()}: Disconnects (closes) the database connection.
 \item \strong{close_db()}: an alias for \code{disconnect_db}, kept for compatibility.
 \item \strong{reconnect_db()}: Reconnects the current \code{du4tnr} to its original database.
+}
+
+Parameters used in these functions are:
+\itemize{
+\item \strong{\code{vname}} the variable name
+\item \strong{\code{value}} the value to be assigned to the variable
+\item \strong{\code{source_file}} the name of the file associated with the variable
+\item \strong{\code{file_path}} the full to the file to be imported as a variable or uploaded.
+\item \strong{\code{steps}} a character vector used for documenting steps in creating the variable
+\item \strong{\code{processor}} a function for customizing importing/uploading files
 }
 }
 \description{

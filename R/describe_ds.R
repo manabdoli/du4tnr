@@ -43,7 +43,7 @@ describe_ds <- function(x, maxLevels=7, var2row=FALSE){
       cntnt[trimws(cntnt)==":"] <- ""
       cntnt
     })
-    catSumm <- do.call('cbind', catSumm)  |> as.table() |> `rownames<-`(NULL)
+    catSumm <- do.call('cbind', catSumm)  %>% as.table() %>% `rownames<-`(NULL)
     if(var2row) catSumm <- t(catSumm)
     results$Categorical <- catSumm
   }

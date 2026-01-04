@@ -13,8 +13,6 @@ which_ds(columnName = NULL, ...)
 \item{columnName}{a character vector of name of variables of interest.}
 
 \item{...}{a comma separated list of datasets}
-
-\item{dss}{is a list of all datasets where variable names will be searched for.}
 }
 \value{
 is a named, logical array that determines which dataset includes

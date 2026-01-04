@@ -3,7 +3,7 @@
 #' @title Searching a column name in datasets (data frames)
 #'
 #' @param columnName a vector of variable names to be looked up is different datasets.
-#' @param dss is a list of all datasets where variable names will be searched for.
+#' @param ... is a list of all datasets where variable names will be searched for.
 #' @return is a named, logical array that determines which dataset includes
 #'   variables listed in `columnName`.
 NULL
@@ -33,7 +33,7 @@ which_ds <- function(columnName=NULL,
   if(length(columnName)==1)
     whichds(columnName = columnName, ...) else {
       vzd_wds <- Vectorize(whichds, "columnName", SIMPLIFY = F)
-      vzd_wds(columnName = columnName, ...) |>
+      vzd_wds(columnName = columnName, ...) %>%
         do.call(what="rbind")
     }
 }

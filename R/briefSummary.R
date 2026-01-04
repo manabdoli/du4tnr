@@ -2,6 +2,9 @@
 #' @description
 #' This function returns summaries of numerical and categorical predictors
 #'   based on the levels of a categorical response variable.
+#' @importFrom stats sd
+#' @importFrom dplyr any_of
+#' @importFrom rlang .data
 #' @param x a data.frame to be summarized
 #' @param response a character string containing the name of the categorical response variable.
 #' @param maxsum a numerical value (default 7) determining the number of summary details generated.
@@ -23,9 +26,9 @@ briefSummary <- function(x, response, maxsum=7){
     numTable <-
       meansDF %>% left_join(sdsDF, by = c(response, 'Variable')) %>%
       mutate(MeanSD=sprintf('%s (%s)',
-                            formatC(Mean, 4, format = 'g'),
-                            formatC(SD, 4, format = 'g'))) %>%
-      pivot_wider(id_cols = Variable,
+                            formatC(.data$Mean, 4, format = 'g'),
+                            formatC(.data$SD, 4, format = 'g'))) %>%
+      pivot_wider(id_cols = .data$Variable,
                   names_from = all_of(response),
                   values_from = all_of('MeanSD'))
   }

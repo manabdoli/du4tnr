@@ -30,7 +30,7 @@ A utility function that creates a new variable by joining the values of a given
 list of variables.
 }
 \examples{
-concat(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), ~A+B)
+du4tnr:::concat(data.frame(A=c('a', 'b', 'a', 'b'), B=c('x', 'y', 'y', 'x')), ~A+B)
 
 }
 \keyword{internal}
