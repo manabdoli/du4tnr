@@ -1,6 +1,6 @@
 Package: du4tnr
 Title: Data Utility for Transparency and Reproducibility (DU4TnR)
-Version: 0.2.1
+Version: 0.3.0.9000
 Authors@R: 
     person("Mansour", "Abdoli", , "mabdoli@fullerton.edu", role = c("aut", "cre"),
            comment = c(
